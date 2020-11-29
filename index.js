@@ -1,33 +1,15 @@
-const PORT = process.env.PORT || 5000;
-const { default: Axios } = require('axios');
 const express = require('express');
-const app = express();
-const axios = require('axios');
+const path = require('path');
 
+// Server
+var server = express();
+var port = process.env.PORT || 8080; // <== this is must
 
-app.use(express.json());
+server.get('/', (req, res) => {
 
-console.log("prueba2");
+    res.send("Working")
+})
 
-app.get('/datos', async (req, res) => {
-    await client.connect();
-
-    const database = client.db('prueba');
-    const collection = database.collection("personas");
-    const personas = await collection.find({}).toArray();
-    console.log(personas);
-    res.json({ personas: personas });
-    
-});
-
-
-
-
-
-
-
-
-
-
-/*app.listen(8081); */
-app.listen(process.env.PORT || 8081);
+server.listen(port, () => {
+    console.log("Listening on port: " + port)
+})
