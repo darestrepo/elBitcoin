@@ -7,7 +7,7 @@ const axios = require('axios');
 
 app.use(express.json());
 
-console.log("prueba");
+console.log("prueba2");
 
 app.get('/datos', async (req, res) => {
     await client.connect();
