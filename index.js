@@ -22,7 +22,7 @@ server.post('/', async (req, res) => {
     const collection = database.collection("personas");
     const action = "prueba acción"; //req.body.queryResult.action;
     
-    console.log(JSON.stringify(req));
+    console.log(JSON.stringify(req.body));
     switch (action) {
         case "saludo":
             console.log(`Se recibió la acción ${action}`);
