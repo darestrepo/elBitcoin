@@ -8,16 +8,20 @@ const client = new MongoClient(uri);
 
 // Server
 var server = express();
-var port = process.env.PORT || 8082; // <== this is must
+var port = process.env.PORT || 8082; // puerto asignado por heroku o local en 80802 para nodemon
+
+
+console.log(`antes del post`);
+
 
 server.post('/', async (req, res) => {
 
     await client.connect();
-
+    console.log(`inicio del post`);
     const database = client.db('bitcoindb');
     const collection = database.collection("personas");
     const action = req.body.queryResult.action;
-    console.log(req.body.queryResult.action);
+    console.log(action);
     switch (action) {
         case "default":
             console.log(`Se recibió la acción ${action}`);
@@ -27,7 +31,12 @@ server.post('/', async (req, res) => {
             break;   
         case "registro":
             console.log("aqui código");
-            break;            
+            break; 
+        default:
+            console.log("default");
+            res.json({
+                fulfillmentText: `Default, se recibió la acción ${action}`
+            });          
 
 
     }
