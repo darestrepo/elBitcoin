@@ -21,7 +21,8 @@ server.post('/', async (req, res) => {
     const database = client.db('bitcoindb');
     const collection = database.collection("personas");
     const action = "prueba acción"; //req.body.queryResult.action;
-    console.log(action);
+    const action1 = req.body.queryResult;
+    console.log(action1);
     switch (action) {
         case "default":
             console.log(`Se recibió la acción ${action}`);
