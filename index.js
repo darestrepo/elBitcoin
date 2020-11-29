@@ -20,7 +20,7 @@ server.post('/', async (req, res) => {
     console.log(`inicio del post`);
     const database = client.db('bitcoindb');
     const collection = database.collection("personas");
-    const action = req.body.queryResult.action;
+    const action = "prueba acción"; //req.body.queryResult.action;
     console.log(action);
     switch (action) {
         case "default":
