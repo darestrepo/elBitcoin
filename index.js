@@ -3,7 +3,7 @@ const path = require('path');
 
 // Server
 var server = express();
-var port = process.env.PORT || 8080; // <== this is must
+var port = process.env.PORT || 80; // <== this is must
 
 server.get('/', (req, res) => {
 
