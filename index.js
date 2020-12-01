@@ -150,7 +150,7 @@ app.post('/', async (req, res) => {
                     const result = await collection.updateOne({telegram_id:telegramID}, {$set: {pais:pais}}); 
                                 
                     res.json({
-                        fulfillmentText: `Indícanos por favor tu DNI (ingresa solo números)`
+                        fulfillmentText: `Indícanos por favor tu DNI`
                     }); 
                 } else {
                     res.json({
