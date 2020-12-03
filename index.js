@@ -9,6 +9,18 @@ var app = express();
 app.use(express.json());
 var port = process.env.PORT || 8082; // puerto asignado por heroku o local en 80802 para nodemon
 
+//api lectura de datos en DB para dashboard cliente
+app.get('/datos', async (req, res) => {
+    await client.connect();
+
+    const database = client.db('bitcoindb');
+    const collection = database.collection("personas");
+    const personas = await collection.find({}).toArray();
+    res.json({ personas: personas });
+    
+});
+
+//api para responder a dialogflow
 app.post('/', async (req, res) => {
 
     await client.connect(); 
