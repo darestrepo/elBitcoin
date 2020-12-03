@@ -3,7 +3,7 @@
       
       <h1 class="my-5">elBITCOIN dashboard</h1>
       
-      <table class="table table-dark" v-if="datos.length > 0">
+      <table class="table table-dark" >
   <thead>
     <tr>
       <th scope="col">Nombre</th>
@@ -17,9 +17,12 @@
   </thead>
   <tbody>
     <tr v-for="(dato, index) in datos" :key="index">
-      <td>{{ dato.id }}</td>
-      <td>{{ dato.title }}</td>
-      <td>{{ dato.body }}</td>
+      <td>{{ dato.nombre }}</td>
+      <td>{{ dato.ciudad }}</td>
+      <td>{{ dato.pais }}</td>
+      <td>{{ dato.dni }}</td>
+      <td>{{ dato.email }}</td>
+      <td>{{ dato.date }}</td>
      
     </tr>
     
@@ -27,7 +30,7 @@
 </table>
 
 
-<div v-else>
+<div>
   <p>No hay datos </p>
   </div>
 
@@ -56,7 +59,7 @@ mounted(){
 
 methods: {
   getData() {
-     const url = 'https://jsonplaceholder.typicode.com/posts';
+     const url = 'https://bitcoin-alejo-2.herokuapp.com/datos/';
      this.axios.get(url)
       .then(res => this.datos = res.data)
       .catch(error => console.log(error))
