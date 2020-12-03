@@ -10,7 +10,7 @@ app.use(express.json());
 var port = process.env.PORT || 8082; // puerto asignado por heroku o local en 80802 para nodemon
 
 //api lectura de datos en DB para dashboard cliente
-/*app.get('/datos', async (req, res) => {
+app.get('/datos', async (req, res) => {
     await client.connect();
 
     const database = client.db('bitcoindb');
@@ -19,22 +19,24 @@ var port = process.env.PORT || 8082; // puerto asignado por heroku o local en 80
     res.json({ personas: personas });
     
 });
-*/
+
 
 //api para responder a dialogflow
 app.post('/', async (req, res) => {
-
+    
     await client.connect(); 
+    
     const database = client.db('bitcoindb');
     const collection = database.collection("personas");
     const action = req.body.queryResult.action;
     const session = req.body.session;
     const telegramID = req.body.originalDetectIntentRequest.payload.data.from.id;
     const nombreTemporal = req.body.originalDetectIntentRequest.payload.data.from.first_name;
+    
     const buscarTelID = await client.db("bitcoindb").collection("personas")
                             .findOne({ telegram_id: telegramID });
-    const USD_ARS = await axios.get('https://free.currconv.com/api/v7/convert?q=USD_ARS&compact=ultra&apiKey=9071cf3e9a4f487aa835');
-    const ars = USD_ARS.data.USD_ARS
+    const USD_ARS = await axios.get('http://api.currencylayer.com/live?access_key=5fa1a7bbb95aac8822ff6640987091ec&source=USD&currencies=ARS&format=1');
+    const ars = USD_ARS.data.quotes.USDARS;
     
     //validadores
     const reGexPlace = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ']+$/;
