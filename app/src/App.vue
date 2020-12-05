@@ -59,7 +59,7 @@ mounted(){
 
 methods: {
   getData() {
-     const url = 'https://bitcoin-alejo-2.herokuapp.com/datos/';
+     const url = 'https://bitcoin-alejo3.herokuapp.com/datos/';
      this.axios.get(url)
       .then(res => this.datos = res.data)
       .catch(error => console.log(error))

@@ -1,11 +1,13 @@
 const { default: Axios } = require('axios');
 const axios = require('axios');
 const express = require('express');
+var cors = require('cors');
 const {MongoClient} = require('mongodb');
 const uri = "mongodb+srv://alejoDB:dlkflsksdkjlkKaAS@cluster0.9ulgl.mongodb.net/bitcoindb?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
 
 var app = express();
+app.use(cors());
 app.use(express.json());
 var port = process.env.PORT || 8082; // puerto asignado por heroku o local en 80802 para nodemon
 
