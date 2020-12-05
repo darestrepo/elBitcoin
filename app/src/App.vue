@@ -22,12 +22,12 @@
    
   <tbody>
     <tr v-for="(dato, index) in filtrarColumnas" :key="index">
-      <td>{{ dato.nombre }}</td>
-      <td>{{ dato.ciudad }}</td>
-      <td>{{ dato.pais }}</td>
-      <td>{{ dato.dni }}</td>
-      <td>{{ dato.email }}</td>
-      <td>{{ dato.date }}</td>
+      <td v-html="highlightMatches(dato.nombre)"></td>
+      <td v-html="highlightMatches(dato.ciudad)"></td>
+      <td v-html="highlightMatches(dato.pais)"></td>
+      <td v-html="highlightMatches(dato.dni)"></td>
+      <td v-html="highlightMatches(dato.email)"></td>
+      <td v-html="highlightMatches(dato.date)"></td>
      
     </tr>
     
@@ -62,6 +62,15 @@ export default {
      this.axios.get(url)
       .then(res => this.datos = res.data.personas)
       .catch(error => console.log(error))
+    },
+    highlightMatches(text) {
+      const matchExists = text
+        .toLowerCase()
+        .includes(this.filter.toLowerCase());
+      if (!matchExists) return text;
+
+      const re = new RegExp(this.filter, "ig");
+      return text.replace(re, matchedText => `<strong>${matchedText}</strong>`);
     }
   },
 
