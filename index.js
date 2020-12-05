@@ -58,7 +58,7 @@ app.post('/', async (req, res) => {
                 let nombre = buscarTelID["nombre"];
                 //imprimir el menú principal
                 res.json({
-                    fulfillmentText: `Bienvenido ${nombre}! 
+                    fulfillmentText: `Te damos la bienvenida ${nombre}! 
                     \nPodras consultar diferentes monedas virtuales, por favor escribe el número de la opción deseada:
                     \n1. Bitcoin\n2. Ethereum\n3. Monero`
                 }); 
@@ -73,7 +73,7 @@ app.post('/', async (req, res) => {
                 };
                 const result = await collection.insertOne(persona);  
                 res.json({
-                    fulfillmentText: `Hola ${nombreTemporal}, te damos la bienvenida a elBitcoin, donde puedes consultar en tiempo real el valor de tus monedas favoritas. \n\nAgradecemos nos indiques si estás dispuesto a brindarnos tu información para tu perfil de cliente? \n\nAcepto/No acepto`
+                    fulfillmentText: `Hola ${nombreTemporal}, te damos la bienvenida a elBitcoin, donde puedes consultar en tiempo real el valor de tus monedas favoritas. \n\nAgradecemos nos indiques si estás de acuerdo en brindarnos tu información para tu perfil de cliente? \n\nAcepto/No acepto`
                 }); 
                 break;
             };
